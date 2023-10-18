@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'font awesome/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-1/css/all.min.css" integrity="sha512-wDB6AYiYP4FO5Sxieamqy9wtpAY3qdHMqlhZecIEUu1YjkLw5gQf/4ZDgOzmCBAF5SheMjmugkpUSVoUrGbLkQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+    <style>
+        .sub-header{
+            background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url('{% static "images/business-1.jpg" %}');
+        }
+        .facilities-col img[id]{
+        width: 100%;
+        border-radius: 10px;
+        height: 68%;
+    }
+
+
+    li a[href="{% url 'logout' %}"]{
+    background-color: #ccc;
+    font-weight: 600;
+   padding: 10px;
+   border-radius: 20px;
+   transition: background-color 1.5s;
+
+}
+li a[href="{% url 'logout' %}"]:hover{
+    background-color: white;
+}
+
+    
+        </style>
+    </head>
+    <body>
+        <section class="sub-header">
+        <nav>
+            <a href="index.html"><img src="{% static 'images/business-logo.png' %}" alt=""></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="{% url 'index' %}">HOME</a></li>
+                    <li><a href="{% url 'about' %}">ABOUT</a></li>
+                    <li><a href="{% url 'course' %}">COURSE</a></li>
+                    <li><a href="{% url 'blog' %}">BLOG</a></li>
+                    <li><a href="{% url 'contact' %}">CONTACT</a></li>
+                    {% if user.is_authenticated %}
+                    <li><i class='fas fa-user-alt' style="margin-right: 5px;"></i>  {{user.username | upper}}</li>
+                    <li><a href="{% url 'logout' %}" style="color: black;">LOGOUT</a></li>
+                    {% endif %}
+                </ul>
+                
+
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+        <h1>Contact Us</h1>
+    </section>
+
+<!-- contact us -->    
+<section class="location">
+
+    <iframe id="iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4013002.1330961124!2d75.6474431697967!3d10.815337742643411!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b00c582b1189633%3A0x559475cc463361f0!2sTamil%20Nadu!5e0!3m2!1sen!2sin!4v1695633355978!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+</section>
+
+<section class="contact-us">
+    <div class="row">
+        <div class="contact-col">
+            <div>
+                <i class="fa fa-home"></i>
+                <span>
+                    <h5>XYZ Road, DEF Building</h5>
+                    <p>TamilNadu, IN</p>
+                </span>
+            </div>
+
+            <div>
+                <i class="fa fa-phone"></i>
+                <span>
+                    <h5>+1 0123456789</h5>
+                    <p>Monday to Saturday, 10AM ot 6PM</p>
+                </span>
+            </div>
+
+             <div>
+                <i class="fa fa-envelope-o"></i>
+                <span>
+                    <h5>info@myTutorials.com</h5>
+                    <p>Email us your query 
+                    </p>
+                </span>
+            </div>
+        </div>
+        <div class="contact-col">
+
+            <form action="https://formsubmit.co/beyir48932@bnovel.com" method="POST">
+                <input type="text" name="name"  placeholder="Enter your name" required>
+                <input type="text" name="email"  placeholder="Enter email address" required>
+                <input type="text" name="subject"  placeholder="Enter your subject" required>
+                <textarea name=""  name="message" id="" cols="30" rows="8" placeholder="Message"></textarea>
+                <button type="submit" class="hero-btn red-btn">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<!-- footer -->
+<section class="footer">
+    <h1>ABOUT US</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni incidunt inventore consequuntur quas expedita distinctio sunt voluptate. Velit, iusto odio?</p>
+    <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i> 
+    </div>
+    <p>Made by sham-Developer </p>
+</section>
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu(){
+            navLinks.style.right ="0";
+        }
+        function hideMenu(){
+            navLinks.style.right = "-200px"
+        }
+    </script>
+</body>
+</html>

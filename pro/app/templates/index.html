@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <link rel="stylesheet" href="{% static 'font awesome/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" integrity="sha512-5A8nwdMOWrSz20fDsjczgUidUBR8liPYU+WymTZP1lmY9G6Oc7HlZv156XqnsgNUzTyMefFTcsFH/tnJE/+xBg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-1/css/all.min.css" integrity="sha512-wDB6AYiYP4FO5Sxieamqy9wtpAY3qdHMqlhZecIEUu1YjkLw5gQf/4ZDgOzmCBAF5SheMjmugkpUSVoUrGbLkQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ 
+ <style>
+        
+        .pop-up{
+            position: fixed;
+            background: linear-gradient(#000000b3, rgba(0,0,0,0.8));
+            display: block;
+            height: 1500vh;
+            width: 1500vw;
+            top: 0;
+            left: 0;
+            align-items: center;
+            justify-content: center;
+            padding: 20%;
+            backdrop-filter: blur(1px);
+        }
+        .container{
+          
+            margin-left: 125px;
+            position: relative;
+            background-color: #fff;
+            overflow: hidden;
+            height: 33vh;
+            width: 40vw;
+            border-radius: 10px;
+        }
+        .label{
+            display: block;
+            font-weight: 600;
+            text-align: center;
+            justify-content: center;
+        }
+        .label:nth-child(1){
+            margin-top: 19px;
+        }
+        .btns{
+            display: block;
+            position: relative;
+            margin-top: 5px;
+            margin-right: auto;
+            margin-left: auto;
+            text-align: center;
+            padding: 1.5%;
+            border-radius: 15px;
+            border: .5px solid rgba(156, 0, 0, 0.788);
+            background-color: #ccc;
+            color: black;
+            transition: .7s;
+            cursor: pointer;
+    
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+
+        button:hover{
+            
+            background-color: rgba(156, 0, 0, 0.788);
+            color: white;
+        }
+    .header{
+        background-image: linear-gradient(rgba(4,9,30,0.7), rgba(4,9,30,0.7)), url('{% static "images/business-banner.jpg" %}');
+    }
+    .facilities-col img[id]{
+    width: 100%;
+    border-radius: 10px;
+    height: 68%;
+}
+#img234, #img345{
+    width: 100%;
+    border-radius: 10px;
+    height: 68%;
+}    
+.cta{
+    background-image: linear-gradient(
+        rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+        url('{% static "images/business-4.jpg" %}');
+}
+ul li{
+    font-size: large;
+    color: white;
+    text-decoration: none;
+}
+
+li a[href="{% url 'logout' %}"]{
+    background-color: #ccc;
+    font-weight: 600;
+   padding: 10px;
+   border-radius: 20px;
+   transition: background-color 1.5s;
+
+}
+li a[href="{% url 'logout' %}"]:hover{
+    background-color: white;
+}
+
+
+    </style>
+</head>
+<body>
+    {% block content %}
+    <section class="header">
+        <nav>
+            <a href="index.html"><img src="{% static 'images/business-logo.png' %}" alt=""></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa fa-times" onclick="hideMenu()"></i>
+                <ul>
+                    <li><a href="{% url 'index' %}">HOME</a></li>
+                    <li><a href="{% url 'about' %}">ABOUT</a></li>
+                    <li><a href="{% url 'course' %}">COURSE</a></li>
+                    <li><a href="{% url 'blog' %}">BLOG</a></li>
+                    <li><a href="{% url 'contact' %}">CONTACT</a></li>
+                    {% if user.is_authenticated %}
+                    <li><i class='fas fa-user-alt' style="margin-right: 5px;"></i>  {{user.username | upper}}</li>
+                    <li><a href="{% url 'logout' %}" style="color: black;">LOGOUT</a></li>
+                    {% endif %}
+                    
+                </ul>
+                
+
+            </div>
+            <i class="fa fa-bars" onclick="showMenu()"></i>
+        </nav>
+        <div class="text-box">
+            <h1>Largest university in the world</h1>
+            <p>Today, one of the simplest things in the world is creating a website.
+                All you need to do to get started is study HTML, CSS, and Javascript.
+            </p>
+            <a href="{% url 'about' %}" class="hero-btn">Click here to know more about us</a>
+        </div>
+    </section>
+
+    <!-- course -->
+    <section class="course">
+        <h1>Course we offer</h1>
+        <p>Lorem ipsum dolor sit amet.</p>
+
+        <div class="row">
+            <div class="course-col">
+                <h3>Intermediate</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, quia error commodi voluptatum nemo vitae. Aperiam assumenda voluptatem eos sunt!</p>
+            </div>
+            <div class="course-col">
+                <h3>Degree</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, quia error commodi voluptatum nemo vitae. Aperiam assumenda voluptatem eos sunt!</p>
+            </div>
+            <div class="course-col">
+                <h3>Post Graduation</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium, quia error commodi voluptatum nemo vitae. Aperiam assumenda voluptatem eos sunt!</p>
+            </div>
+        </div>
+    </section>
+
+<!-- campius -->
+<section class="campus">
+    <h1>Our Global Campus</h1>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ad, nobis.</p>
+
+    <div class="row">
+        <div class="campus-col">
+            <img src="{% static 'images/business-7.jpg' %}" alt="">
+            <div class="layer">
+                <h3>LOS ANGELES</h3>
+            </div>
+        </div>
+        <div class="campus-col">
+            <img src="{% static 'images/business-9.jpg' %}" alt=""  id="campImg">
+            <div class="layer">
+                <h3>FRANCE</h3>
+            </div>
+        </div>
+        <div class="campus-col">
+            <img src="{% static 'images/business-8.jpg' %}" alt="" id="campImg">
+            <div class="layer">
+                <h3>NETHERLAND</h3>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- faccilities -->
+
+<section class="facilities">
+    <h1>Our Facilities</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, accusantium!</p>
+
+    <div class="row">
+        <div class="facilities-col">
+            <img src="{% static 'images/business-6.jpg' %}" alt="" >
+            <h3>World Class Library</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error quos expedita nulla soluta sequi aspernatur.</p>
+        </div>
+        <div class="facilities-col">
+            <img src="{% static 'images/business-5.png' %}" alt="" id="img234">
+            <h3>Largest Play Ground</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error quos expedita nulla soluta sequi aspernatur.</p>
+        </div>
+        <div class="facilities-col">
+            <img src="{% static 'images/business-3.jpg' %}" alt="" id="img345">
+            <h3>Tasty and Healthy</h3>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Error quos expedita nulla soluta sequi aspernatur.</p>
+        </div>
+    </div>
+</section>
+
+<!-- testimonials -->
+<section class="testimonials">
+    <h1>What Our Student Says</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+    <div class="row">
+        <div class="testimonial-col">
+            <img src="{% static 'images/business-11.jpg' %}" alt="">
+            <div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut esse repellendus libero laboriosam accusamus soluta nesciunt dolore reprehenderit architecto consequuntur!</p>
+            <h3>Angeline Cloe</h3>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-o"></i>
+            </div>
+        </div>
+        <div class="testimonial-col">
+            <img src="{% static 'images/business-10.jpg' %}" alt="">
+            <div>
+            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut esse repellendus libero laboriosam accusamus soluta nesciunt dolore reprehenderit architecto consequuntur!</p>
+            <h3>Javier Nathen</h3>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star"></i>
+            <i class="fa fa-star-half-o"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- call To Action -->
+<section class="cta">
+    <h1>Enroll For Our Various Online Courses <br> Anywhere From The World</h1>
+    <a href="" class="hero-btn">CONTACT US</a>
+</section>
+
+<!-- footer -->
+<section class="footer">
+    <h1>ABOUT US</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni incidunt inventore consequuntur quas expedita distinctio sunt voluptate. Velit, iusto odio?</p>
+    <div class="icons">
+        <i class="fa fa-facebook"></i>
+        <i class="fa fa-twitter"></i>
+        <i class="fa fa-instagram"></i>
+        <i class="fa fa-linkedin"></i> 
+    </div>
+    <p>Made by sham-Developer </p>
+</section>
+
+<div class="pop-up">
+    <div class="container">
+        <span class="label">
+            You have to login to continue!!
+        </span>
+        <br>
+        <a href="{% url 'login' %}" class="log"><button onclick="showContent" class="btns">Click here to login</button></a>
+        <br>
+        <span class="label"> If you are new to the site. Click the below link to register.</span>
+        <br><a href="{% url 'signup' %}" class="reg"><button onclick="showContent" class="btns">Signup for free</button></a><br>
+    </div>
+</div>
+{% endblock %}
+    <script>
+        var navLinks = document.getElementById("navLinks");
+        function showMenu(){
+            navLinks.style.right ="0";
+        }
+        function hideMenu(){
+            navLinks.style.right = "-200px"
+        }
+</script>
+
+        {% if user.is_authenticated %}
+        <script>
+            $(".pop-up").css('display','none')
+        </script>
+        {% endif %}
+</body>
+</html>
